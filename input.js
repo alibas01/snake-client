@@ -15,12 +15,15 @@ const setupInput = function(conn) {
       connection.write("Move: up");
     };
     if (input === "a") {
+      console.log('left')
       connection.write("Move: left");
     };
     if (input === "d") {
+      console.log('right')
       connection.write("Move: right");
     };
     if (input === "s") {
+      console.log('down')
       connection.write("Move: down");
     };
   });
