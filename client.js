@@ -12,8 +12,10 @@ const connect = function() {
     console.log("Please use 'w' 'a' 's' 'd' butons to direct."  );
     conn.write("Name: ALB");
   });
-  
-  
+  conn.setEncoding('utf8');
+  conn.on('connect', () => {
+    conn.write("Say: What the heck!!")
+  });
     
     setTimeout(() => {
       process.stdout.write('\x07');
