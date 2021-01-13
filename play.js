@@ -1,9 +1,10 @@
+const input = require('./input');
 //play.js
 const {connect}  = require('./client');
-const {setupInput} = require('./input');
+
 
 console.log('Connecting ...');
-connect();
+let conn = connect()
+input.setupInput(conn);
 
-setupInput();
 

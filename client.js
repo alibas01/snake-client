@@ -13,31 +13,13 @@ const connect = function() {
     conn.write("Name: ALB");
   });
   
-  const stdin = process.stdin;
-  stdin.setRawMode(true);
-  stdin.setEncoding('utf8');
-  conn.setEncoding('utf8'); 
-
-  //send commands to server
-  stdin.on('data', (input) => {
-    if (input === "w") {
-      conn.write("Move: up");
-    };
-    if (input === "a") {
-      conn.write("Move: left");
-    };
-    if (input === "d") {
-      conn.write("Move: right");
-    };
-    if (input === "s") {
-      conn.write("Move: down");
-    };
+  
     
     setTimeout(() => {
       process.stdout.write('\x07');
     }, 50);
     
-  })
+  
 
   //if receive a data from server, show it!
   conn.on('data', (data) => {
