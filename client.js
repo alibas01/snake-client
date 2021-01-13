@@ -9,6 +9,7 @@ const connect = function() {
     port: 50541
   }, () => {
     console.log("Successfully connected to game server"  );
+    console.log("Please use 'w' 'a' 's' 'd' butons to direct."  );
     conn.write("Name: ALB");
   });
   
@@ -17,11 +18,26 @@ const connect = function() {
   stdin.setEncoding('utf8');
   conn.setEncoding('utf8'); 
 
-  //send the name to server
-  // const initials = 'ALB';
-  // stdin.on('data', (input) => {
-  //   client.write(`"Name: ${initials}" `);
-  // })
+  //send commands to server
+  stdin.on('data', (input) => {
+    if (input === "w") {
+      conn.write("Move: up");
+    };
+    if (input === "a") {
+      conn.write("Move: left");
+    };
+    if (input === "d") {
+      conn.write("Move: right");
+    };
+    if (input === "s") {
+      conn.write("Move: down");
+    };
+    
+    setTimeout(() => {
+      process.stdout.write('\x07');
+    }, 50);
+    
+  })
 
   //if receive a data from server, show it!
   conn.on('data', (data) => {
@@ -31,7 +47,6 @@ const connect = function() {
   conn.on('end', () => {
     console.log('disconnected from server');
   });
-
   return conn;
 }
 
